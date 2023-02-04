@@ -1,0 +1,122 @@
+<html>
+<header>
+	<center>
+	<h2>Word Game</h2>
+	</center>
+<script>
+	let words = ["TABLE", "GET", "VEGETABLE", "ABLE", "ELEVATE", "GETABLE", "BEAGLE", "BEETLE", "GELATE", "LEGATE", "AGLET", "BAGEL", "BEGAT", "BEVEL", "BLEAT", "EAGLE", "ELATE", "LEAVE", "GAVEL", "VALET", "BALE", "BEAT", "BEET", "BELT", "BETA", "GALE", "GAVE", "GATE", "GLEE", "LATE", "TALE", "TEAL", "TEEL", "VALE", "VEAL", "AGE", "ALE", "ATE", "BAG", "BAT", "BEE", "BEG", "BET", "EAT", "EEL", "GEL", "LAB", "LAG", "LEG", "LET", "TAB", "TAG", "TEA", "VEG", "VET", "BE", "AT"]
+	var score = 0;
+	var winCondition = 0;
+	function welcome()
+	{
+		let difficulty = prompt("Select the difficulty. Enter Easy, Normal, or Hard.", "Normal")
+		if ((difficulty == null) || (difficulty == ""))
+		{
+			alert("User cancelled the prompt.")
+			window.location.reload()
+		}
+		else if ((difficulty == "Easy") || (difficulty == "easy") || (difficulty == "EASY"))
+		{
+			winCondition = 5;
+			alert("Welcome to the word game! Click on the letters inside the larger word to form new words! Form " + winCondition + " words to win!")
+		}
+		else if ((difficulty == "Normal") || (difficulty == "normal") || (difficulty == "NORMAL"))
+		{
+			winCondition = 10;
+			alert("Welcome to the word game! Click on the letters inside the larger word to form new words! Form " + winCondition + " words to win!")
+		}
+		else if ((difficulty == "Hard") || (difficulty == "hard") || (difficulty == "HARD"))
+		{
+			winCondition = 15;
+			alert("Welcome to the word game! Click on the letters inside the larger word to form new words! Form " + winCondition + " words to win!")
+		}
+		else
+		{
+			alert("Invalid Input.")
+			window.location.reload()
+		}
+	}
+	
+	function disable(ID)
+	{
+		document.getElementById(ID).disabled = true
+	}
+	
+	function showWord(word)
+	{
+		var p = document.createElement("p")
+		p.style.textAlign = "center"
+		p.style.fontSize = "12px";
+		var text = document.createTextNode(word)
+		p.appendChild(text)
+		document.body.appendChild(p)
+	}
+	
+	function display(x)
+	{
+		if (x == 'C')
+		{
+			document.getElementById("wordField").value = ""
+			document.getElementById('V').disabled = false
+			document.getElementById('E1').disabled = false
+			document.getElementById('G').disabled = false
+			document.getElementById('E2').disabled = false
+			document.getElementById('T').disabled = false
+			document.getElementById('A').disabled = false
+			document.getElementById('B').disabled = false
+			document.getElementById('L').disabled = false
+			document.getElementById('E3').disabled = false
+		}
+		else if (x == 'Enter')
+		{
+			if (words.includes(document.getElementById("wordField").value))
+			{
+				alert("You got a word!")
+				showWord(document.getElementById("wordField").value)
+				let indexToRemove = words.indexOf(document.getElementById("wordField").value)
+				words.splice(indexToRemove, 1)
+				score += 1
+				if (score == winCondition)
+				{
+					alert("Congratulations! You Won!")
+					alert("Restarting Game.")
+					window.location.reload()
+				}
+				display('C')
+			}
+			else
+			{
+				alert("Incorrect")
+				display('C')
+			}
+		}
+		else
+		{
+			document.getElementById("wordField").value += x
+			
+		}
+	}
+</script>	
+</header>
+
+<body onload = "javascript:welcome()">
+	<center>
+	<table>
+		<tr>
+			<td align="center"><h3><button style="height:50px;width:50px;background-color:#dba307" name = "V" id = "V" onclick = "javascript:display('V');disable('V')">V</button><h3></td>
+			<td align="center"><h3><button style="height:50px;width:50px;background-color:#dba307" name = "E" id = "E1" onclick = "javascript:display('E');disable('E1')">E</button><h3></td>
+			<td align="center"><h3><button style="height:50px;width:50px;background-color:#dba307" name = "G" id = "G" onclick = "javascript:display('G');disable('G')">G</button><h3></td>
+			<td align="center"><h3><button style="height:50px;width:50px;background-color:#dba307" name = "E" id = "E2" onclick = "javascript:display('E');disable('E2')">E</button><h3></td>
+			<td align="center"><h3><button style="height:50px;width:50px;background-color:#dba307" name = "T" id = "T" onclick = "javascript:display('T');disable('T')">T</button><h3></td>
+			<td align="center"><h3><button style="height:50px;width:50px;background-color:#dba307" name = "A" id = "A" onclick = "javascript:display('A');disable('A')">A</button><h3></td>
+			<td align="center"><h3><button style="height:50px;width:50px;background-color:#dba307" name = "B" id = "B" onclick = "javascript:display('B');disable('B')">B</button><h3></td>
+			<td align="center"><h3><button style="height:50px;width:50px;background-color:#dba307" name = "L" id = "L" onclick = "javascript:display('L');disable('L')">L</button><h3></td>
+			<td align="center"><h3><button style="height:50px;width:50px;background-color:#dba307" name = "E" id = "E3" onclick = "javascript:display('E');disable('E3')">E</button><h3></td>
+		</tr>
+	</table>
+	<input readonly type="text" style = "height:50px;width:200px;font-size:20pt" name="wordField" id="wordField"/>
+	<h2><button name = "enter" id = "enter" onclick = "javascript:display('Enter')">Enter</button><h2>
+	<h4><button name = "clear" id = "clear" onclick = "javascript:display('C')">Clear</button><h4>
+	</center>
+</body>
+</html>

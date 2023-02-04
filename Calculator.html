@@ -1,0 +1,63 @@
+<html>
+<header>
+	<center>
+	<h2>Calculator</h2>
+	</center>
+<script>
+	function display(x)
+	{
+		if (x == "=")
+		{
+			calculate()
+		}
+		else if (x == "c")
+		{
+			document.getElementById("calcField").value = ""
+		}
+		else
+		{
+			document.getElementById("calcField").value += x
+		}
+	}
+	
+	function calculate()
+	{
+		var calcInput = document.getElementById("calcField").value
+		var answer = eval(calcInput)
+		document.getElementById("calcField").value = answer
+	}
+</script>
+</header>
+
+<body>
+<center>
+<input type="text" style = "width:100px" name="calcField" id="calcField"/>
+<table>	
+	<tr>
+		<td align="center"><h3><button name = "one" id = "one" onclick = "javascript:display('1')">1</button><h3></td>
+		<td align="center"><h3><button name = "two" id = "two" onclick = "javascript:display('2')">2</button><h3></td>
+		<td align="center"><h3><button name = "three" id = "three" onclick = "javascript:display('3')">3</button><h3></td>
+		<td align="center"><h3><button name = "add" id = "add" onclick = "javascript:display('+')">+</button><h3></td>
+	</tr>
+	<tr>
+		<td align="center"><h3><button name = "four" id = "four" onclick = "javascript:display('4')">4</button><h3></td>
+		<td align="center"><h3><button name = "five" id = "five" onclick = "javascript:display('5')">5</button><h3></td>
+		<td align="center"><h3><button name = "six" id = "six" onclick = "javascript:display('6')">6</button><h3></td>
+		<td align="center"><h3><button name = "sub" id = "sub" onclick = "javascript:display('-')">-</button><h3></td>
+	</tr>
+	<tr>
+		<td align="center"><h3><button name = "seven" id = "seven" onclick = "javascript:display('7')">7</button><h3></td>
+		<td align="center"><h3><button name = "eight" id = "eight" onclick = "javascript:display('8')">8</button><h3></td>
+		<td align="center"><h3><button name = "nine" id = "nine" onclick = "javascript:display('9')">9</button><h3></td>
+		<td align="center"><h3><button name = "mult" id = "mult" onclick = "javascript:display('*')">*</button><h3></td>
+	</tr>
+	<tr>
+		<td align="center"><h3><button name = "clr" id = "clr" onclick = "javascript:display('c')">C</button><h3></td>
+		<td align="center"><h3><button name = "zero" id = "zero" onclick = "javascript:display('0')">0</button><h3></td>
+		<td align="center"><h3><button name = "equal" id = "equal" onclick = "javascript:display('=')">=</button><h3></td>
+		<td align="center"><h3><button name = "div" id = "div" onclick = "javascript:display('/')">/</button><h3></td>
+	</tr>
+</table>
+</center>
+</body>
+</html>
